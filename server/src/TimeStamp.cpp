@@ -4,6 +4,8 @@
 
 #include "../include/TimeStamp.h"
 
+#include <chrono>
+
 TimeStamp::TimeStamp():microSecondsSinceEpoch_(0) {
 
 }
@@ -28,5 +30,16 @@ std::string TimeStamp::to_string() const {
     tm_time->tm_sec);
     return buf;
 }
+
+TimeStamp TimeStamp::invaild() {
+    return TimeStamp{};
+}
+
+TimeStamp TimeStamp::addTime(TimeStamp timestamp, double seconds) {
+    int64_t delta = static_cast<int64_t>(seconds * TimeStamp::kMicroSecondsPerSecond);
+    return TimeStamp(timestamp.microSecondsSinceEpoch() + delta);
+}
+
+
 
 

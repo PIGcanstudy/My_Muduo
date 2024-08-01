@@ -39,7 +39,9 @@ void Thread::start() {
     sem_t sem;
     // 初始化一个信号量
     sem_init(&sem, 0, 0);
+
     thread_ = std::make_shared<std::thread>([this, &sem]() {
+
         ++numCreated_;
         // 得到当前线程的tid
         tid_ = CurrentThread::tid();
