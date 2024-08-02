@@ -15,13 +15,14 @@ public:
     static TimeStamp invaild();
     std::string to_string() const;
     int64_t microSecondsSinceEpoch() const {return microSecondsSinceEpoch_;}
-    inline bool operator<(TimeStamp lhs, TimeStamp rhs) const
-    {
-        return lhs.microSecondsSinceEpoch() < rhs.microSecondsSinceEpoch();
-    }
     bool valid() const { return microSecondsSinceEpoch_ > 0; }
 private:
     int64_t microSecondsSinceEpoch_;
 };
+
+inline bool operator<(TimeStamp lhs, TimeStamp rhs)
+{
+    return lhs.microSecondsSinceEpoch() < rhs.microSecondsSinceEpoch();
+}
 
 
